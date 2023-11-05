@@ -1,18 +1,15 @@
-
-//click a button with a value, store that into an array
-//click operator sign and store that into an array
-//store second value into the array
-
-//you should have an array 4+5
-//check the array with if statement for + sign once = is clicked,
-//if plus sign there, pass the array into the function
-//inside the function split the array to get only numbers
-//in two new variables. use the two new variables a perform
-//calculation. get result
+// once you have finalResult, clear the inputArr, but keep finalResult
 
 
 let inputArr = [];
 let finalResult = 0;
+
+function clearArray() {
+     inputArr.splice(0, inputArr.length);
+     inputArr.push(finalResult);
+    
+};
+
 
 const button0 = document.querySelector("#number0");
 button0.addEventListener("click", () =>{
@@ -130,7 +127,7 @@ getResult.addEventListener("click", () =>{
     const leftSide = inputArr.slice(whereOperator + 1);
     console.log(leftSide);
 
-   const rightNumber = rightSide.reduce((current, next)=>{
+   let rightNumber = rightSide.reduce((current, next)=>{
         return (current * 10) + next;
    },0);
    console.log("Right number: " + rightNumber);
@@ -150,7 +147,9 @@ getResult.addEventListener("click", () =>{
         finalResult = rightNumber / leftNumber;
     }
     console.log("Final result is: " + finalResult);
+    clearArray();
 });
+
 
 
 
