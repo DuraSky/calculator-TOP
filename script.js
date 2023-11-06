@@ -8,10 +8,15 @@ const display = document.querySelector("#calculatorDisplay");
 // let rightNumber = 0;
 // let leftNumber = 0;
 
+let leftSideDefined = false;
+
 
 function clearArray() {
      inputArr.splice(0, inputArr.length);
-     inputArr.push(finalResult);   
+     inputArr.push(finalResult);
+     leftSideDefined = false;  
+     
+     console.log(inputArr);
 };
 
 function updateDisplay(){
@@ -19,18 +24,23 @@ function updateDisplay(){
     return modifInputArr;
 };
 
+
+
 function operate(){
+    if (leftSideDefined) {
+    
     const whereOperator = inputArr.findIndex(item => item === "+" || item === "-" || item === "*" || item === "/");
     console.log("Index of the operator is: " + whereOperator);
     const rightSide = inputArr.slice(0, whereOperator);
     console.log(rightSide);
-    const leftSide = inputArr.slice(whereOperator + 1);
+    let leftSide = inputArr.slice(whereOperator + 1);
     console.log(leftSide);
-
     let rightNumber = parseFloat(rightSide.join('')); 
     console.log("Right number: " + rightNumber);
     let leftNumber = parseFloat(leftSide.join('')); 
     console.log("Left number: " + leftNumber);
+
+    
 
     if(inputArr[whereOperator] === "+"){
         finalResult = rightNumber + leftNumber;
@@ -41,8 +51,11 @@ function operate(){
     } else if (inputArr[whereOperator] === "/"){
         finalResult = rightNumber / leftNumber;
     }
+    clearArray();
+    
 
-    return rightNumber+leftNumber;
+    
+}
 };
 
 
@@ -127,13 +140,16 @@ button9.addEventListener("click", () =>{
 
 const plusOperator = document.querySelector("#plusOperator");
 plusOperator.addEventListener("click", () =>{
-    inputArr.push("+");
-    console.log(inputArr);
-    display.value = updateDisplay();
-
-    if(leftNumber.length != 0){
+    
+    if (leftSideDefined) {
+        console.log(inputArr);
         operate();
+    } else {
+        inputArr.push("+");
+        console.log(inputArr);
+        leftSideDefined = true; // Set the flag to true when entering an operator
     }
+    display.value = updateDisplay();
 });
 
 const minusOperator = document.querySelector("#minusOperator");
@@ -168,7 +184,7 @@ const getResult = document.querySelector("#getResult");
 getResult.addEventListener("click", () =>{
     operate();
     console.log("Final result is: " + finalResult);
-    clearArray();
+    
     display.value = updateDisplay();
 });
 
