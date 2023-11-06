@@ -12,12 +12,13 @@ let leftSideDefined = false;
 
 
 function clearArray() {
-     inputArr.splice(0, inputArr.length);
-     inputArr.push(finalResult);
-     leftSideDefined = false;  
-     
+     inputArr.splice(0, inputArr.length - 1);
+     inputArr.unshift(finalResult);
+    //  leftSideDefined = false;  
+    
      console.log(inputArr);
 };
+
 
 function updateDisplay(){
     let modifInputArr = inputArr.join('');
@@ -27,7 +28,7 @@ function updateDisplay(){
 
 
 function operate(){
-    if (leftSideDefined) {
+    //  if (leftSideDefined) {
     
     const whereOperator = inputArr.findIndex(item => item === "+" || item === "-" || item === "*" || item === "/");
     console.log("Index of the operator is: " + whereOperator);
@@ -52,10 +53,8 @@ function operate(){
         finalResult = rightNumber / leftNumber;
     }
     clearArray();
-    
 
-    
-}
+// }   
 };
 
 
@@ -142,11 +141,12 @@ const plusOperator = document.querySelector("#plusOperator");
 plusOperator.addEventListener("click", () =>{
     
     if (leftSideDefined) {
-        console.log(inputArr);
+        inputArr.push("+");
+        console.log("if condition for plus: " +inputArr);
         operate();
     } else {
         inputArr.push("+");
-        console.log(inputArr);
+        console.log("else condition for plus: " +inputArr);
         leftSideDefined = true; // Set the flag to true when entering an operator
     }
     display.value = updateDisplay();
@@ -154,22 +154,43 @@ plusOperator.addEventListener("click", () =>{
 
 const minusOperator = document.querySelector("#minusOperator");
 minusOperator.addEventListener("click", () =>{
-    inputArr.push("-");
-    console.log(inputArr);
+    if (leftSideDefined) {
+        inputArr.push("-");
+        console.log("if condition for plus: " +inputArr);
+        operate();
+    } else {
+        inputArr.push("-");
+        console.log("else condition for plus: " +inputArr);
+        leftSideDefined = true; // Set the flag to true when entering an operator
+    }
     display.value = updateDisplay();
 });
 
 const timesOperator = document.querySelector("#timesOperator");
 timesOperator.addEventListener("click", () =>{
-    inputArr.push("*");
-    console.log(inputArr);
+    if (leftSideDefined) {
+        inputArr.push("*");
+        console.log("if condition for plus: " +inputArr);
+        operate();
+    } else {
+        inputArr.push("*");
+        console.log("else condition for plus: " +inputArr);
+        leftSideDefined = true; // Set the flag to true when entering an operator
+    }
     display.value = updateDisplay();
 });
 
 const divisionOperator = document.querySelector("#divisionOperator");
 divisionOperator.addEventListener("click", () =>{
-    inputArr.push("/");
-    console.log(inputArr);
+    if (leftSideDefined) {
+        inputArr.push("/");
+        console.log("if condition for plus: " +inputArr);
+        operate();
+    } else {
+        inputArr.push("/");
+        console.log("else condition for plus: " +inputArr);
+        leftSideDefined = true; // Set the flag to true when entering an operator
+    }
     display.value = updateDisplay();
 });
 
@@ -184,7 +205,7 @@ const getResult = document.querySelector("#getResult");
 getResult.addEventListener("click", () =>{
     operate();
     console.log("Final result is: " + finalResult);
+    display.value = finalResult;
     
-    display.value = updateDisplay();
 });
 
