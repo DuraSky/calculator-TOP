@@ -4,30 +4,48 @@
         <meta charset="utf-8">
         <title>Calculator project</title>
         <link rel="stylesheet" href="style.css">
-        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
     </head>
     <body>
-        <button id="number0">0</button>
-        <button id="number1">1</button>
-        <button id="number2">2</button>
-        <button id="number3">3</button>
-        <button id="number4">4</button>
-        <button id="number5">5</button>
-        <button id="number6">6</button>
-        <button id="number7">7</button>
-        <button id="number8">8</button>
-        <button id="number9">9</button>
-    
-        <button id="dot">.</button>
-        <button id="plusOperator">+</button>
-        <button id="minusOperator">-</button>
-        <button id="timesOperator">*</button>
-        <button id="divisionOperator">/</button>
-        <button id="getResult">=</button>
-        <button id="resetCalc">CE</button>
-        <button id="backspace">C</button>
 
-        <input type="text" id="calculatorDisplay" readonly>
+        <div id="calculatorBody">
+            <input type="text" id="calculatorDisplay" readonly><br />
+
+                <div id="allRows">
+                    <div id="firstRow">
+                        <button id="backspace">C</button>
+                        <button id="resetCalc">CE</button>
+                        <button id="getResult">=</button>
+                        <button id="divisionOperator">/</button>      
+                    </div>
+                    
+                    <div id="secondRow">
+                        <button id="number7">7</button>
+                        <button id="number8">8</button>
+                        <button id="number9">9</button>
+                        <button id="plusOperator">+</button>
+                    </div>
+                    <div id="thirdRow">
+                        <button id="number4">4</button>
+                        <button id="number5">5</button>
+                        <button id="number6">6</button>
+                        <button id="minusOperator">-</button>
+                    </div>
+                    
+                    <div id="fourthRow">
+                        <button id="number1">1</button>
+                        <button id="number2">2</button>
+                        <button id="number3">3</button>
+                        <button id="timesOperator">*</button>            </div>
+                    <div id="fifthRow">
+                        <button id="number0">0</button>
+                        <button id="dot">.</button>                    </div>
+                </div>      
+        </div>
+    
+        
+        
+
     </body>
     <script src="script.js"></script>
 </html>
